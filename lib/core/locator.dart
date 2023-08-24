@@ -1,5 +1,9 @@
 
 
+import 'package:contact_book/core/data/repositories/authentication.dart';
+import 'package:contact_book/core/services/api/api_service.dart';
+import 'package:contact_book/core/services/shared_preferences/shared_preferences.dart';
+import 'package:contact_book/core/viewmodels/splash.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.I;
@@ -10,8 +14,24 @@ GetIt locator = GetIt.I;
 // );
 
 void setupLocator() {
+  //services
+  locator.registerLazySingleton(() => ApiService(locator(), logger: true));
+  locator.registerLazySingleton(() => SharedPreferencesHelper());
+  
+
+  //repoitories
+  locator.registerLazySingleton(() => AuthRepository());
+
+
+  //view models
+  locator.registerFactory(() => SplashViewModel());
 }
 
 resetLocator() async {
+  //services
+  await locator.resetLazySingleton<ApiService>(
+      instance: locator.get<ApiService>());
+  await locator.resetLazySingleton<SharedPreferencesHelper>(
+      instance: locator.get<SharedPreferencesHelper>());
 
 }

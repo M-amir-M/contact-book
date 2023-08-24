@@ -1,3 +1,4 @@
+import 'package:contact_book/core/locator.dart';
 import 'package:contact_book/core/routes/route_path.dart';
 import 'package:contact_book/core/routes/router.dart';
 import 'package:flutter/material.dart';
@@ -5,9 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp( AppConfiguration());
+  runApp(AppConfiguration());
 }
-
 
 class AppConfiguration extends StatefulWidget {
   @override
@@ -15,7 +15,6 @@ class AppConfiguration extends StatefulWidget {
 }
 
 class _AppConfigurationState extends State<AppConfiguration> {
-
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -28,7 +27,6 @@ class _AppConfigurationState extends State<AppConfiguration> {
 
   @override
   Widget build(BuildContext context) {
-
     return MyApp();
   }
 }
@@ -43,8 +41,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
-
+    WidgetsFlutterBinding.ensureInitialized();
+    setupLocator();
     super.initState();
   }
 
