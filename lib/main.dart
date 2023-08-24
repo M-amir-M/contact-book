@@ -1,3 +1,5 @@
+import 'package:contact_book/core/routes/route_path.dart';
+import 'package:contact_book/core/routes/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -58,6 +60,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       ],
       locale: Locale("en", "US"),
       navigatorKey: Get.key,
+      initialRoute: RoutePath.splashRoute,
+      getPages: AppRouter.pages,
     );
   }
 }
