@@ -60,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     TextFormField(
                       controller: passwordController,
                       validator: MultiValidator([
-                        RequiredValidator(errorText: "Password is required".tr),
+                        RequiredValidator(errorText: "Password is required"),
                       ]),
                       decoration: InputDecoration(
                         prefixIcon: Icon(Iconsax.password_check),

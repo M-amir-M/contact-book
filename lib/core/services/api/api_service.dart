@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:contact_book/core/data/models/result.dart';
+import 'package:contact_book/core/routes/route_path.dart';
 import 'package:contact_book/core/services/shared_preferences/shared_preferences.dart';
 import 'package:contact_book/core/utils/log.dart';
 import 'package:dio/dio.dart';
@@ -12,9 +13,9 @@ import 'dio_provider.dart';
 class ApiService {
   static BaseOptions _options = BaseOptions(
     baseUrl: ApiPath.baseUrl,
-    connectTimeout: 30000.milliseconds,
-    receiveTimeout: 30000.milliseconds,
-    sendTimeout: 30000.milliseconds,
+    connectTimeout: 100000.milliseconds,
+    receiveTimeout: 100000.milliseconds,
+    sendTimeout: 100000.milliseconds,
     contentType: ContentType.json.value,
   );
 
@@ -76,7 +77,12 @@ class ApiService {
             if (error.type == DioExceptionType.badResponse &&
                 error.response?.data != null) {
               if (error.response?.statusCode == 401) {
-                //TODO: handle navigate to login page.
+                var token = await _preferencesHelper?.getAuth();
+                if (token != null) {
+                  await _preferencesHelper?.removeAuth();
+                  
+                }
+                await Get.offNamed(RoutePath.signIn);
               }
             }
           } catch (error, stack) {

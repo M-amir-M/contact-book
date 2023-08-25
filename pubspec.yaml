@@ -21,7 +21,6 @@ dependencies:
   dio: ^5.3.2
   shared_preferences: ^2.2.0
   flutter_spinkit: ^5.2.0
-  connectivity_plus: ^4.0.2
   animate_do: ^3.0.2
   iconsax: ^0.0.8
   shimmer: ^3.0.0
@@ -32,5 +31,16 @@ dev_dependencies:
     sdk: flutter
 flutter:
   uses-material-design: true
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/OpenSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+          weight: 700
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 900
   assets:
    - assets/images/

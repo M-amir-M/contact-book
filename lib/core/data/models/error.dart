@@ -54,7 +54,7 @@ class AppError {
   String toRawJson() => json.encode(toJson());
 
   factory AppError.fromJson(Map<String, dynamic> json) => AppError(
-        message: json["message"] == null ? "خطای رخ داد" : json["message"],
+        message: json["message"] == null ? "Unknown error" : json["message"],
         field: json["field"] == null ? null : json["field"],
         messageType: MessageType.response,
       );

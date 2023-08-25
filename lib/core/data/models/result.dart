@@ -52,7 +52,7 @@ class Result {
       );
     }
     return AppError(
-      message: message ?? 'خطای رخ داد !',
+      message: message ?? 'Unknown error !',
       type: type,
       // statusCode: statusCode,
       messageType: MessageType.unknown,
@@ -125,7 +125,7 @@ class ResultParser {
       statusCode: statusCode,
       errors: [
         AppError(
-          message: message ?? 'خطای رخ داد !',
+          message: message ?? 'Unknown error !',
           type: type,
           // messageType: AppError.parseMessageType(exception: e),
           // statusCode: statusCode,
