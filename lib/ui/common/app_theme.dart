@@ -32,8 +32,11 @@ Color getShadowColor(BuildContext context) {
 class AppThemeData {
   const AppThemeData._();
 
-  static const Color skeletonBaseColor = Color(0xFF656871);
-  static const Color skeletonHighlightColor = Color(0xff313236);
+  static const Color skeletonBaseColor = Color.fromARGB(255, 212, 212, 212);
+  static const Color skeletonSecondaryColor =
+      Color.fromARGB(255, 223, 223, 223);
+  static const Color skeletonHighlightColor =
+      Color.fromARGB(255, 245, 245, 245);
 
   static ThemeData darkThemeData({
     ColorScheme? colorScheme,
@@ -210,9 +213,6 @@ class AppColorData {
 
   static const Color textFieldUnSelectedBorder = Color(0xFF424242);
 
-  static const Color skeletonBaseColor = Color(0xFF424242);
-  static const Color skeletonHighlightColor = Color(0xff616161);
-
   static const Color innerShadowTaskListColor = Color(0x66000000);
 
   /// for understanding color scheme spec checkout blow url
@@ -234,7 +234,7 @@ class AppColorData {
   static const ColorScheme lightColorScheme = ColorScheme(
     brightness: Brightness.light,
     primary: Color(0xFF14BD80),
-    secondary: Color(0xFFFC4A4A),
+    secondary: Colors.lightBlueAccent,
     background: Color(0xFFE4E4E4),
     surface: Color(0xFFFFFFFF),
     error: Color(0xFFFF1525),
@@ -350,5 +350,4 @@ class _AppTextThemeData {
           color: scheme.onSurface,
         ),
       );
-
 }

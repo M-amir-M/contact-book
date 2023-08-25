@@ -7,6 +7,7 @@ import 'package:contact_book/core/services/shared_preferences/shared_preferences
 import 'package:contact_book/core/viewmodels/auth.dart';
 import 'package:contact_book/core/viewmodels/contact_detail.dart';
 import 'package:contact_book/core/viewmodels/contacts.dart';
+import 'package:contact_book/core/viewmodels/new_contact.dart';
 import 'package:contact_book/core/viewmodels/splash.dart';
 import 'package:get_it/get_it.dart';
 
@@ -33,6 +34,7 @@ void setupLocator() {
   locator.registerFactory(() => AuthViewModel());
   locator.registerFactory(() => ContactsViewModel());
   locator.registerFactory(() => ContactDetailViewModel());
+  locator.registerFactory(() => NewContactViewModel());
 }
 
 resetLocator() async {

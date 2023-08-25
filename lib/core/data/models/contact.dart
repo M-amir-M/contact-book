@@ -16,9 +16,9 @@ class ContactModel {
   final String? notes;
   final List<String> picture;
   final String? phone;
-  String get avatar => picture.length > 0
+  String? get avatar => picture.length > 0
       ? picture.first
-      : "https://img.freepik.com/free-photo/profile-shot-aristocratic-girl-blouse-with-frill-lady-with-flowers-her-hair-posing-proudly-against-blue-wall_197531-14304.jpg";
+      : null;
 
   String get fullName => "${firstName ?? ''} ${lastName ?? ''}";
 

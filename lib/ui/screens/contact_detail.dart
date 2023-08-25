@@ -34,134 +34,137 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
       }
       return DefaultTabController(
         length: 2,
-        child: Scaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(UIHelper.paddingLarge),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Get.back(result: true);
-                      },
-                      icon: Icon(Iconsax.arrow_left_2),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: optionMenu(
-                        onDelete: () {
-                          Get.defaultDialog(
-                            navigatorKey: Get.key,
-                            content: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Do you want to delete contact?",
-                                style: Theme.of(context).textTheme.bodyText1,
+        child: SafeArea(
+          child: Scaffold(
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(UIHelper.paddingLarge),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Get.back(result: true);
+                        },
+                        icon: Icon(Iconsax.arrow_left_2),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: optionMenu(
+                          onDelete: () {
+                            Get.defaultDialog(
+                              navigatorKey: Get.key,
+                              content: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Do you want to delete contact?",
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                               ),
+                              title: "Delete",
+                              textConfirm: "Yes",
+                              confirmTextColor:
+                                  Theme.of(context).colorScheme.primary,
+                              textCancel: "No",
+                              cancelTextColor:
+                                  Theme.of(context).colorScheme.error,
+                              onConfirm: () {
+                                Get.back();
+                                model.deleteContact();
+                              },
+                            );
+                          },
+                          onEdit: () {
+                            Get.toNamed(RoutePath.editNewCntact
+                                .replaceAll(":id", model.contact!.id!));
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Hero(
+                  tag: "avatar-${model.contact?.id}",
+                  child: CircleAvatar(
+                    radius: 60.0,
+                    backgroundImage: NetworkImage("${model.contact?.avatar}"),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                  ),
+                ),
+                UIHelper.verticalSpaceLarge,
+                Text(
+                  "${model.contact?.fullName}",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                UIHelper.verticalSpaceXSmall,
+                Text(
+                  "${model.contact?.phone}",
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
+                UIHelper.verticalSpaceLarge,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 60),
+                  child: TabBar(
+                    labelStyle: Theme.of(context).textTheme.button,
+                    labelColor: Theme.of(context).colorScheme.primary,
+                    unselectedLabelColor:
+                        Theme.of(context).colorScheme.secondary,
+                    tabs: [
+                      Tab(
+                        height: 30,
+                        text: "Details",
+                      ),
+                      Tab(
+                        height: 30,
+                        text: "Call Logs",
+                      ),
+                    ],
+                  ),
+                ),
+                UIHelper.verticalSpaceLarge,
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      // first tab bar view widget
+                      Container(
+                        child: ListView(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: UIHelper.paddingLarge),
+                          children: [
+                            _cardDetail(
+                              icon: Icon(Iconsax.call),
+                              value: model.contact?.phone ?? '',
+                              lable: "Number",
                             ),
-                            title: "Delete",
-                            textConfirm: "Yes",
-                            confirmTextColor:
-                                Theme.of(context).colorScheme.primary,
-                            textCancel: "No",
-                            cancelTextColor:
-                                Theme.of(context).colorScheme.error,
-                            onConfirm: () {
-                              Get.back();
-                              model.deleteContact();
-                            },
-                          );
-                        },
-                        onEdit: () {
-                          Get.toNamed(RoutePath.editNewCntact
-                              .replaceAll(":id", model.contact!.id!));
-                        },
+                            Divider(),
+                            _cardDetail(
+                              icon: Icon(Iconsax.sms),
+                              value: model.contact?.email ?? '',
+                              lable: "Email Address",
+                            ),
+                            Divider(),
+                            _cardDetail(
+                              icon: Icon(Iconsax.note),
+                              value: model.contact?.notes ?? '',
+                              lable: "Notes",
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Hero(
-                tag: "avatar-${model.contact?.id}",
-                child: CircleAvatar(
-                  radius: 60.0,
-                  backgroundImage: NetworkImage("${model.contact?.avatar}"),
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
-                ),
-              ),
-              UIHelper.verticalSpaceLarge,
-              Text(
-                "${model.contact?.fullName}",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              UIHelper.verticalSpaceXSmall,
-              Text(
-                "${model.contact?.phone}",
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
-              UIHelper.verticalSpaceLarge,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 60),
-                child: TabBar(
-                  labelStyle: Theme.of(context).textTheme.button,
-                  labelColor: Theme.of(context).colorScheme.primary,
-                  unselectedLabelColor: Theme.of(context).colorScheme.secondary,
-                  tabs: [
-                    Tab(
-                      height: 30,
-                      text: "Details",
-                    ),
-                    Tab(
-                      height: 30,
-                      text: "Call Logs",
-                    ),
-                  ],
-                ),
-              ),
-              UIHelper.verticalSpaceLarge,
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    // first tab bar view widget
-                    Container(
-                      child: ListView(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: UIHelper.paddingLarge),
-                        children: [
-                          _cardDetail(
-                            icon: Icon(Iconsax.call),
-                            value: model.contact?.phone ?? '',
-                            lable: "Number",
-                          ),
-                          Divider(),
-                          _cardDetail(
-                            icon: Icon(Iconsax.sms),
-                            value: model.contact?.email ?? '',
-                            lable: "Email Address",
-                          ),
-                          Divider(),
-                          _cardDetail(
-                            icon: Icon(Iconsax.note),
-                            value: model.contact?.notes ?? '',
-                            lable: "Notes",
-                          ),
-                        ],
-                      ),
-                    ),
 
-                    // second tab bar viiew widget
-                    Container(
-                      child: Center(
-                        child: Text("Empty"),
+                      // second tab bar viiew widget
+                      Container(
+                        child: Center(
+                          child: Text("Empty"),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );
@@ -219,7 +222,6 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
       },
       icon: Icon(
         Iconsax.more,
-        color: Colors.white,
       ),
       padding: EdgeInsets.all(UIHelper.paddingMedium),
       shape: RoundedRectangleBorder(
@@ -233,7 +235,10 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
             leading: Icon(Iconsax.edit),
             title: Text(
               "Edit",
-              style: Theme.of(context).textTheme.button,
+              style: Theme.of(context)
+                  .textTheme
+                  .button
+                  ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
             ),
           ),
         ),

@@ -6,9 +6,9 @@ import 'package:contact_book/ui/common/helper.dart';
 import 'package:contact_book/ui/screens/base_view.dart';
 import 'package:contact_book/ui/widgets/buttons/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -36,6 +36,21 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    CircleAvatar(
+                      radius: 60.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(
+                          "assets/images/logo.svg",
+                          width: 150,
+                          color: Colors.lightBlueAccent,
+                        ),
+                      ),
+                      backgroundColor: Theme.of(context).colorScheme.surface,
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
                     Text(
                       "Sign In",
                       style: Theme.of(context).textTheme.headline4,

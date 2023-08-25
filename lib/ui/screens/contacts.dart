@@ -24,9 +24,6 @@ class _ContactListPageState extends State<ContactListPage> {
     return BaseView<ContactsViewModel>(onModelReady: (model) async {
       await model.getContactList();
     }, builder: (context, model, index) {
-      if (model.isLoading) {
-        return ContactListSkeleton();
-      }
       return SafeArea(
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
@@ -54,7 +51,8 @@ class _ContactListPageState extends State<ContactListPage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: UIHelper.paddingLarge),
+                padding:
+                    EdgeInsets.symmetric(horizontal: UIHelper.paddingLarge),
                 child: TextField(
                   controller: searchController,
                   onChanged: (value) {
@@ -121,66 +119,79 @@ class _ContactListPageState extends State<ContactListPage> {
                   ],
                 ),
               ),
-              Expanded(
-                child: ListView.separated(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: UIHelper.paddingLarge,
-                    vertical: UIHelper.paddingMedium,
-                  ),
-                  itemBuilder: (context, index) {
-                    ContactModel contact = model.contacts[index];
-                    return SlideInLeft(
-                      duration: Duration(milliseconds: 150 * index),
-                      child: InkWell(
-                        onTap: () async {
-                          await Get.toNamed(RoutePath.contactDetail
-                              .replaceAll(":id", "${contact.id}"));
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: UIHelper.paddingMedium),
-                          child: Row(
-                            children: [
-                              Hero(
-                                tag: "avatar-${contact.id}",
-                                child: CircleAvatar(
-                                  radius: 30.0,
-                                  backgroundImage:
-                                      NetworkImage("${contact.avatar}"),
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.secondary,
-                                ),
-                              ),
-                              UIHelper.horizontalSpaceLarge,
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+              model.isLoading
+                  ? ContactListSkeleton()
+                  : Expanded(
+                      child: ListView.separated(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: UIHelper.paddingLarge,
+                          vertical: UIHelper.paddingMedium,
+                        ),
+                        itemBuilder: (context, index) {
+                          ContactModel contact = model.contacts[index];
+                          return SlideInLeft(
+                            duration: Duration(milliseconds: 150 * index),
+                            child: InkWell(
+                              onTap: () async {
+                                await Get.toNamed(RoutePath.contactDetail
+                                    .replaceAll(":id", "${contact.id}"));
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: UIHelper.paddingMedium),
+                                child: Row(
                                   children: [
-                                    Text(
-                                      "${contact.fullName}",
-                                      style:
-                                          Theme.of(context).textTheme.headline6,
+                                    Hero(
+                                      tag: "avatar-${contact.id}",
+                                      child: CircleAvatar(
+                                        radius: 30.0,
+                                        child: contact.avatar != null
+                                            ? null
+                                            : Text(contact
+                                                    .fullName.capitalizeFirst
+                                                    ?.substring(0, 1) ??
+                                                ""),
+                                        backgroundImage: contact.avatar == null
+                                            ? null
+                                            : NetworkImage("${contact.avatar}"),
+                                        backgroundColor: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                      ),
                                     ),
-                                    Text(
-                                      "${contact.phone}",
-                                      style:
-                                          Theme.of(context).textTheme.subtitle2,
-                                    ),
+                                    UIHelper.horizontalSpaceLarge,
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${contact.fullName}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline6,
+                                          ),
+                                          Text(
+                                            "${contact.phone}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2,
+                                          ),
+                                        ],
+                                      ),
+                                    )
                                   ],
                                 ),
-                              )
-                            ],
-                          ),
-                        ),
+                              ),
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return Divider();
+                        },
+                        itemCount: model.contacts.length,
                       ),
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return Divider();
-                  },
-                  itemCount: model.contacts.length,
-                ),
-              ),
+                    ),
             ],
           ),
         ),
@@ -201,9 +212,10 @@ class _ContactListPageState extends State<ContactListPage> {
           default:
         }
       },
+      color: Theme.of(context).colorScheme.onSurface,
+      surfaceTintColor: Theme.of(context).colorScheme.onSurface,
       icon: Icon(
         Iconsax.more,
-        color: Colors.white,
       ),
       padding: EdgeInsets.all(UIHelper.paddingMedium),
       shape: RoundedRectangleBorder(
@@ -214,7 +226,10 @@ class _ContactListPageState extends State<ContactListPage> {
           value: 0,
           child: ListTile(
             contentPadding: EdgeInsets.zero,
-            leading: Icon(Iconsax.login),
+            leading: Icon(
+              Iconsax.login,
+              color: Colors.white,
+            ),
             title: Text(
               "Logout",
               style: Theme.of(context).textTheme.button,
