@@ -165,7 +165,7 @@ class _NewContactPageState extends State<NewContactPage> {
                       AppButton(
                         child: Text(
                           "Submit",
-                          style: Theme.of(context).textTheme.button,
+                          style: Theme.of(context).textTheme.labelLarge,
                         ),
                         isLoading: model.isLoading,
                         onPressed: () {

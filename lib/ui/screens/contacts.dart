@@ -42,7 +42,7 @@ class _ContactListPageState extends State<ContactListPage> {
                   children: [
                     Text(
                       "My Contact",
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     optionMenu(onLogout: () {
                       model.logout();
@@ -108,11 +108,11 @@ class _ContactListPageState extends State<ContactListPage> {
                   children: [
                     Text(
                       "Friends",
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     Text(
                       "Show All",
-                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             decoration: TextDecoration.underline,
                           ),
                     ),
@@ -169,13 +169,13 @@ class _ContactListPageState extends State<ContactListPage> {
                                             "${contact.fullName}",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline6,
+                                                .titleLarge,
                                           ),
                                           Text(
                                             "${contact.phone}",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .subtitle2,
+                                                .titleSmall,
                                           ),
                                         ],
                                       ),
@@ -232,7 +232,7 @@ class _ContactListPageState extends State<ContactListPage> {
             ),
             title: Text(
               "Logout",
-              style: Theme.of(context).textTheme.button,
+              style: Theme.of(context).textTheme.labelLarge,
             ),
           ),
         ),

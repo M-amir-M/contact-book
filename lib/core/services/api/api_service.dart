@@ -19,7 +19,7 @@ class ApiService {
     contentType: ContentType.json.value,
   );
 
-  static DioProvider<Result>? _dio, _tokenDio;
+  static DioProvider<Result>? _dio;
   static SharedPreferencesHelper? _preferencesHelper;
 
   //constructors
@@ -39,14 +39,6 @@ class ApiService {
       'Accept': 'application/json',
       'x-api-key': '62e3e6d11894fe7edea71921',
     };
-
-    _tokenDio = DioProvider(
-      _options.baseUrl,
-      ResultParser.parseResult,
-      ResultParser.parseError,
-      baseOptions: _options,
-      logger: logger,
-    );
 
     _dio = DioProvider(
       _options.baseUrl,

@@ -1,7 +1,6 @@
 import 'package:contact_book/ui/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 List<BoxShadow> defaultButtonBoxShadow(BuildContext context, {Color? color}) =>
     [
@@ -109,8 +108,8 @@ class AppThemeData {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        titleTextStyle: textTheme.bodyText2?.copyWith(fontSize: 16),
-        contentTextStyle: textTheme.caption?.copyWith(fontSize: 15),
+        titleTextStyle: textTheme.bodyMedium?.copyWith(fontSize: 16),
+        contentTextStyle: textTheme.bodySmall?.copyWith(fontSize: 15),
       ),
       cardTheme: CardTheme(
         color: _colorScheme.surface,
@@ -170,12 +169,12 @@ class AppThemeData {
           ),
           gapPadding: 1,
         ),
-        errorStyle: textTheme.caption?.copyWith(
+        errorStyle: textTheme.bodySmall?.copyWith(
           fontSize: 12,
           color: _colorScheme.error.withOpacity(0.7),
         ),
-        labelStyle: textTheme.subtitle1,
-        hintStyle: textTheme.subtitle1,
+        labelStyle: textTheme.titleMedium,
+        hintStyle: textTheme.titleMedium,
         contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       ),
       buttonTheme: ButtonThemeData(
@@ -193,7 +192,7 @@ class AppThemeData {
           AppColorData.darkFillColor,
         ),
         contentTextStyle:
-            textTheme.subtitle2?.apply(color: AppColorData.darkFillColor),
+            textTheme.titleSmall?.apply(color: AppColorData.darkFillColor),
       ),
     );
   }
@@ -254,59 +253,59 @@ class _AppTextThemeData {
   static const semiBold = FontWeight.w600;
 
   static TextTheme defaultTextTheme(ColorScheme scheme) => TextTheme(
-        headline1: TextStyle(
+        displayLarge: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 96,
           fontWeight: regular,
           letterSpacing: -1.5,
           color: scheme.onSurface,
         ),
-        headline2: TextStyle(
+        displayMedium: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 60,
           fontWeight: regular,
           letterSpacing: -0.5,
           color: scheme.onSurface,
         ),
-        headline3: TextStyle(
+        displaySmall: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 48,
           fontWeight: regular,
           color: scheme.onSurface,
         ),
-        headline4: TextStyle(
+        headlineMedium: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 24,
           fontWeight: semiBold,
           letterSpacing: 0.25,
           color: scheme.onSurface,
         ),
-        headline5: TextStyle(
+        headlineSmall: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 20,
           fontWeight: semiBold,
           color: scheme.onSurface,
         ),
-        headline6: TextStyle(
+        titleLarge: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 18,
           fontWeight: medium,
           letterSpacing: 0.15,
           color: scheme.onSurface,
         ),
-        subtitle1: TextStyle(
+        titleMedium: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 16,
           fontWeight: regular,
           color: scheme.onSurface,
         ),
-        subtitle2: TextStyle(
+        titleSmall: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 14,
           fontWeight: medium,
           color: scheme.onSurface,
         ),
-        bodyText1: TextStyle(
+        bodyLarge: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 16,
           fontWeight: regular,
@@ -314,7 +313,7 @@ class _AppTextThemeData {
           color: scheme.onSurface,
         ),
         //Text Style 2
-        bodyText2: TextStyle(
+        bodyMedium: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 14,
           fontWeight: regular,
@@ -323,7 +322,7 @@ class _AppTextThemeData {
           color: scheme.onSurface,
         ),
         //Text Style 3
-        button: TextStyle(
+        labelLarge: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 14,
           fontWeight: medium,
@@ -332,7 +331,7 @@ class _AppTextThemeData {
           color: AppColorData.darkFillColor,
         ),
         //Text Style 5
-        caption: TextStyle(
+        bodySmall: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 12,
           fontWeight: regular,
@@ -341,7 +340,7 @@ class _AppTextThemeData {
           color: scheme.secondary,
         ),
         //Text Style 7
-        overline: TextStyle(
+        labelSmall: TextStyle(
           fontFamily: "OpenSans",
           fontSize: 10,
           fontWeight: regular,

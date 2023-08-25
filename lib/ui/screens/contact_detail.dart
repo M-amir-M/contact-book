@@ -60,7 +60,7 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   "Do you want to delete contact?",
-                                  style: Theme.of(context).textTheme.bodyText1,
+                                  style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                               ),
                               title: "Delete",
@@ -96,18 +96,18 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
                 UIHelper.verticalSpaceLarge,
                 Text(
                   "${model.contact?.fullName}",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 UIHelper.verticalSpaceXSmall,
                 Text(
                   "${model.contact?.phone}",
-                  style: Theme.of(context).textTheme.subtitle2,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
                 UIHelper.verticalSpaceLarge,
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 60),
                   child: TabBar(
-                    labelStyle: Theme.of(context).textTheme.button,
+                    labelStyle: Theme.of(context).textTheme.labelLarge,
                     labelColor: Theme.of(context).colorScheme.primary,
                     unselectedLabelColor:
                         Theme.of(context).colorScheme.secondary,
@@ -188,11 +188,11 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
               children: [
                 Text(
                   "$value",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 Text(
                   "$lable",
-                  style: Theme.of(context).textTheme.subtitle2,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             ),
@@ -237,7 +237,7 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
               "Edit",
               style: Theme.of(context)
                   .textTheme
-                  .button
+                  .labelLarge
                   ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
             ),
           ),
@@ -251,7 +251,7 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
               "Delete",
               style: Theme.of(context)
                   .textTheme
-                  .button
+                  .labelLarge
                   ?.copyWith(color: Theme.of(context).colorScheme.error),
             ),
           ),

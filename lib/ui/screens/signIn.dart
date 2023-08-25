@@ -53,7 +53,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     Text(
                       "Sign In",
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     UIHelper.verticalSpaceXLarge,
                     TextFormField(
@@ -98,7 +98,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       isLoading: model.isLoading,
                       child: Text(
                         "Sign In",
-                        style: Theme.of(context).textTheme.button,
+                        style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ),
                   ],

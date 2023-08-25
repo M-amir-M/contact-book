@@ -89,7 +89,7 @@ class _AppButtonState extends State<AppButton> {
                     )
                   : DefaultTextStyle.merge(
                       child: widget.child,
-                      style: Theme.of(context).textTheme.button,
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
             ),
           ),
